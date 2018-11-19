@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+ 
+ <!--/* This layout includes MULTI select (with select2) support */-->
+ 
+<head>
+       	
+		<link rel="stylesheet" href="/css/custom-picnic.css" th:href="@{/css/custom-picnic.css}" />        
+		<link rel="stylesheet" href="/css/style.css" th:href="@{/css/style.css}" />
+        <link rel="stylesheet" href="/css/select2.min.css" th:href="@{/css/select2.min.css}" />
+        <script type="text/javascript" src="/js/jquery.js" th:src="@{/js/jquery.js}" ></script>
+ 		<script type="text/javascript" src="/js/select2.min.js" th:src="@{/js/select2.min.js}"></script>
+        
+</head>
+<body>
+<header th:replace="fragments/header :: header">
+    default Header
+</header>
+<main th:replace=":: content">
+    sample content
+</main>
+<footer th:replace="fragments/footer :: footer">
+    default Footer
+</footer>
+<script>
+ $(document).ready( function () {
+	 //$('.multi').multiSelect()
+	 $('select').select2({placeholder: 'Select an option'});
+ } );
+ </script>
+</body>
+</html>

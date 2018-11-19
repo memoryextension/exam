@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+ 
+ <!--/* This layout includes smarttable support */-->
+ 
+<head>
+		<link rel="stylesheet" type="text/css" href="/css/datatables.min.css" th:href="@{/css/datatables.min.css}"/>
+		<link rel="stylesheet" href="/css/custom-picnic.css" th:href="@{/css/custom-picnic.css}" />
+        <link rel="stylesheet" href="/css/style.css" th:href="@{/css/style.css}" />
+        <script type="text/javascript" src="/js/jquery.js" th:src="@{/js/jquery.js}" ></script>
+ 		<script type="text/javascript" src="/js/datatables.min.js" th:src="@{/js/datatables.min.js}"></script>
+        
+</head>
+<body>
+<header th:replace="fragments/header :: header">
+    default Header
+</header>
+<main th:replace=":: content">
+    sample content
+</main>
+<footer th:replace="fragments/footer :: footer">
+    default Footer
+</footer>
+<script>
+/*<![CDATA[*/
+jQuery.fn.dataTableExt.afnFiltering.push(
+        function( oSettings, aData, iDataIndex ) {
+                    // Status column number is store in global var statusColumn
+            var filterCheckbox = document.getElementById('excludeCompleted');
+            
+                    
+            if(filterCheckbox && filterCheckbox.checked){
+              if( (aData[ statusColumn] == "Completed")|| (aData[ statusColumn] == "Cancelled") ){ return false;}
+            }
+            return true;
+        }
+    );
+
+
+
+ $(document).ready( function () {
+	 	var table = $('.smart').DataTable({
+	    		"lengthMenu": [ 25, 50, 75, 100 ]
+	    });
+	    
+	    if(typeof statusColumn !== 'undefined') {
+            // Add event listeners to exclude completed
+    		$('#excludeCompleted').change( function() { table.draw(); } );
+		}
+	    
+ } );
+ /*]]>*/
+ </script>
+</body>
+</html>

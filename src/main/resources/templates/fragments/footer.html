@@ -1,0 +1,3 @@
+<footer th:fragment="footer">
+&copy; me <strong th:if="${stagingFlag}">STAGING version</strong> (<span th:text="'version '+${softwareVersion}" />) - <a th:href="@{/logout}" >Logout</a>
+</footer>

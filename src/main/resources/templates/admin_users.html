@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org" 
+      layout:decorate="~{layouts/smarttable}">
+    <head>
+        <title>Admin</title>
+    </head>
+    <body >
+    <main th:fragment="content">  
+  
+   
+    <nav class="tabs" th:include="~{fragments/nav :: admin}" />
+  
+  <div class="info" th:if="${globalMessage}"
+			th:text="${globalMessage}">Some Success message</div>
+  
+  <div class="row">
+  	<h4>User management</h4>
+  		<p>Here you can see the current users,  change their role or 
+  		<a th:href="@{/admin/user/add}">add a new user</a></p>
+  		<table id="users" class="smart">
+  			<thead><tr>
+     				<th>User</th>
+     				<th>Roles</th>
+     				<th>Action</th>
+     		</tr></thead>
+     		
+   		<tr th:each="u : ${users}">
+     		
+     			<td th:text="${u.login}">bob</td>
+  					<td th:text="${u.allRoles}" >Default Role</td>
+  					<td ><a th:href="@{/admin/user/{id}/edit(id=${u.id})}">Edit</a></td>
+   		</tr>
+
+     		
+
+
+  		</table>
+ 		
+ </div>
+ 
+ 
+ 
+ </main>
+    </body>
+</html>

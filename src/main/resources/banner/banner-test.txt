@@ -1,0 +1,5 @@
+  Spring boot TEST
+   Spring boot TEST
+    Spring boot TEST
+     Spring boot TEST
+This is TEST profile using Spring Boot${spring-boot.formatted-version}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+ 
+ <!--/* This layout is for public pages. */-->
+ 
+<head>
+		<link rel="stylesheet" href="/css/picnic.min.css" th:href="@{/css/picnic.min.css}" />
+        <link rel="stylesheet" href="/css/style.css" th:href="@{/css/style.css}" />
+
+</head>
+<body class="loginpage">
+<header th:replace="fragments/public_header :: header">
+    default Header
+</header>
+<main th:replace=":: content">
+    sample content
+</main>
+<footer th:replace="fragments/public_footer :: footer">
+    &copy; me
+</footer>
+</body>
+</html>

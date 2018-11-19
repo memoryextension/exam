@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org" 
+      layout:decorate="~{layouts/default}">
+    <head>
+        <title>Exam question</title>
+    </head>
+    <body >
+    <main th:fragment="content">  
+  
+   <nav class="tabs" th:include="~{fragments/nav :: admin}" />
+  
+  <div class="info" th:if="${globalMessage}"
+			th:text="${globalMessage}">Some Success message</div>
+  
+  <div class="row">
+  	<div>
+  		<h4 th:text="'Add(s) for \''+${questionForm.examTitle}+'\''">Upload Participants for 'text exam'</h4>
+		<form id="questionForm" th:action="@{/admin/exam/{id}/question/add/(id=${questionForm.examId})}" th:object="${questionForm}"
+			action="#" method="post" >
+			
+			<input type="hidden" th:field="*{examId}" />
+			<label>Question: 
+			<input type="text" th:field="*{question}" /></label>
+			
+			<div class="form-actions">
+				<input type="submit" value="Save" name="save"/>
+				<input type="submit" value="Save and Add another question" name="saveAdd"/>
+				<input type="submit" value="cancel" name="cancel"/>
+			</div>
+
+  </div>
+ </div>
+ 
+ 
+ </main>
+    </body>
+</html>

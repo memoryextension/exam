@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+ 
+ <!--/* This layout includes jquery */-->
+ 
+<head>
+		<link rel="stylesheet" href="/css/custom-picnic.css" th:href="@{/css/custom-picnic.css}" />
+		<link rel="stylesheet" href="/css/style.css" th:href="@{/css/style.css}" />
+         
+        <meta name="_ctx" th:content="@{/}" />
+         
+        <script type="text/javascript" src="/js/jquery-3.1.1.js" th:src="@{/js/jquery-3.1.1.js}"></script>
+        
+</head>
+<body>
+<header th:replace="fragments/header :: header">
+    default Header
+</header>
+<main th:replace=":: content">
+    sample content
+</main>
+<footer th:replace="fragments/footer :: footer">
+    default Footer
+</footer>
+<script>
+ $(document).ready( function () {
+	 	console.log("hello - jquery ready");
+ } );
+ </script>
+</body>
+</html>

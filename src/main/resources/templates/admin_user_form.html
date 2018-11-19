@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org" 
+      layout:decorate="~{layouts/multi}">
+    <head>
+        <title>Admin - User management</title>
+    </head>
+    <body >
+    <main th:fragment="content">  
+  
+  <nav class="tabs" th:include="~{fragments/nav :: admin}" />
+  
+  
+  <div class="row">
+  	<div>
+  		<h4 th:unless="${user} and ${user.id}">Add user</h4>
+  		<h4 th:if="${user} and ${user.id}"> Edit user </h4>
+  		
+  		
+  		<form id="userForm" th:action="@{/admin/user/add/}" th:object="${user}"
+			action="#" method="post">
+			<input type="hidden" th:field="*{id}" />
+			<div th:if="${#fields.hasErrors('*')}" class="error">
+				<p th:each="error : ${#fields.errors('*')}" th:text="${error}">
+					Validation error</p>
+			</div>
+			
+			
+			<label for="login">Login</label>
+ 			<input type="text" th:field="*{login}" th:class="${#fields.hasErrors('login')} ? 'field-error'" />
+ 			 
+ 			<label for="displayName">Display Name</label> 
+ 			<input type="text" th:field="*{displayName}" th:class="${#fields.hasErrors('displayName')} ? 'field-error'" /> 
+ 			<br/>
+ 			<label for="email">E-mail</label> 
+ 			<input type="text" th:field="*{email}" th:class="${#fields.hasErrors('email')} ? 'field-error'" /> 
+ 			<label>Password (12 letters min)</label> <input type="password" name="clearPassword" />
+ 			<br /> 
+ 			
+			<label for="roles">Roles</label>
+			<select th:field="*{roles}" multiple="multiple" class="multi" >
+		       <option th:each="r: ${roles}" th:value="${r.id}" th:text="${r.name}"></option>
+    		</select>
+			
+			<br/><br/>
+			
+			<div class="form-actions">
+				<input type="submit" value="Save" name="save"/>
+				<input type="submit" value="Save and Add another User" name="saveAdd"/>
+				<input type="submit" value="Delete" name="del" />
+				<input type="submit" value="cancel" name="cancel"/>
+			</div>
+			
+			 <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>  -->
+		</form>
+ 	 </div>
+ </div>
+
+ 
+ 
+ 
+ </main>
+    </body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org" 
+      layout:decorate="~{layouts/default}">
+    <head>
+        <title>Admin</title>
+    </head>
+    <body >
+    <main th:fragment="content">  
+  
+  <div class="info" th:if="${globalMessage}"
+			th:text="${globalMessage}">Some Success message</div>
+  
+  <nav class="tabs" th:include="~{fragments/nav :: admin}" />
+  
+  <div class="row">
+  		<ul>
+  		
+  		
+  		<li><a th:href="@{/admin/exam/all}">Manage exam</a> to create a new Exam</li>
+  		<li><a th:href="@{/admin/users/}">Manage Users</a> to add a new user, for either onboarding or exam</li>
+  		
+		</ul>
+
+  </div>
+  
+  
+ 		
+	 
+ </main>
+    </body>
+</html>

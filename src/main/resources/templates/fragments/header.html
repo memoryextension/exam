@@ -1,0 +1,7 @@
+<header th:fragment="header">
+<h1 class="header"><img th:src="@{/img/logo_banner_small.png}" />
+</h1>
+
+
+<div>You are connected as <span th:text="${username}" /> (<span th:text="${user_roles}" />) from <span th:text="${cluster}" /> / <a href="/help/">Help</a> / <a th:href="@{/logout}" >Logout</a></div>
+</header>

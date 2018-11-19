@@ -1,0 +1,9 @@
+<nav  th:fragment="admin">
+  	<div class="tab "><a th:href="@{/exam/}">Exam</a></div>
+  <div th:if="${adminMode}" class="tab is-tab-selected"><a th:href="@{/admin/}">Admin</a></div>
+</nav>
+
+<nav th:fragment="exam" >
+  <div class="tab is-tab-selected"><a th:href="@{/exam/}">Exam</a></div>
+  <div th:if="${adminMode}" class="tab"><a th:href="@{/admin/}">Admin</a></div>
+</nav>

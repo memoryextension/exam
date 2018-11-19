@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org" 
+      layout:decorate="~{layouts/default}">
+    <head>
+        <title>Exam</title>
+    </head>
+    <body >
+    <main th:fragment="content">  
+    
+    <div class="info" th:if="${globalMessage}" th:text="${globalMessage}">Some Success message</div>
+  
+<nav class="tabs" th:include="~{fragments/nav :: exam}" />
+  
+  
+  
+  <div class="row">
+  	<h4 th:text="'Exam  '+${answer.exam.title}"> Exam</h4>
+  	<div>
+  	<p th:text="${answer.exam.message}" >some intro </p>
+  	<h5>Questions</h5>
+		<form id="answerForm" th:action="@{/exam/{id}(id=${answer.exam.id})}" th:object="${answer}"
+			action="#" method="post">
+			<input type="hidden" th:field="*{id}" />
+			<input type="hidden" th:field="*{exam}" />
+			<input type="hidden" th:field="*{user}" />
+			
+			<th:block th:each="q,iter : ${answer.exam.questions}" >
+				<p th:text="${iter.index + 1}+') '+${q}" />
+ 				<input type="text" th:field="*{answers[__${iter.index}__]}" class="answer " />
+
+ 			</th:block>
+ 			<br />
+ 			<br />  
+			<input type="submit" value="Submit my answers and finish my exam" class="link_button"/>
+			</form>
+		  	
+  	</div>
+  	
+ </div>
+ 
+ </main>
+    </body>
+</html>

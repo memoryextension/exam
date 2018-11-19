@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org" 
+      layout:decorate="~{layouts/smarttable}">
+    <head>
+        <title>Exams management</title>
+    </head>
+    <body >
+    <main th:fragment="content">  
+  
+   <nav class="tabs" th:include="~{fragments/nav :: admin}" />
+  
+  <div class="info" th:if="${globalMessage}"
+			th:text="${globalMessage}">Some Success message</div>
+  
+  <div class="row">
+  	<div>
+  		<h4>Exams management</h4>
+  		
+  		<p>You can see the current exams, modify them or 
+  		<a th:href="@{/admin/exam/add}">add a new exam</a></p>
+  		
+  		<table id="exams" class="smart">
+  			<thead><tr>
+     				<th>Title</th>
+     				<th>Action</th>
+     		</tr></thead>
+     		<tr th:each="e : ${exams}">
+     			<td th:text="${e.title}">Exam Name</td>
+  					<td ><a th:href="@{/admin/exam/{id}/edit(id=${e.id})}">Edit</a> /
+  					<a th:href="@{/admin/exam/{id}/questions(id=${e.id})}">manage questions</a> /
+  					<form class="inline" name="deleteExam" th:action="@{/admin/exam/{id}/delete(id=${e.id})}" method="post">
+				<input type="image" title="delete this exam" alt="delete" th:src="@{/img/delete.svg}" width="15px"/>
+				</form>
+  					</td>
+     		</tr>
+  		</table>
+ 	 </div>
+ </div>
+ 
+ 
+ </main>
+    </body>
+</html>

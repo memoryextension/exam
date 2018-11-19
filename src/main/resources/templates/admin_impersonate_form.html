@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org" 
+      layout:decorate="~{layouts/multi}">
+    <head>
+        <title>Admin - Impersonate</title>
+    </head>
+    <body >
+    <main th:fragment="content">  
+  
+   
+    <nav class="tabs" th:include="~{fragments/nav :: admin}" />
+  
+  <div class="info" th:if="${globalMessage}"
+			th:text="${globalMessage}">Some Success message</div>
+  
+  <div class="row">
+  	<h4>Impersonation</h4>
+  		
+  		<form id="impersonateForm" th:action="@{/admin/impersonate/}" th:object="${impersonation}"
+			action="#" method="post" th:if="${superAdminMode}">
+			
+
+			<label for="cluster">Select the cluster (UN Entity)</label>
+			<select th:field="*{cluster}" >
+				<option value=""></option>
+		        <option	th:each="c: ${clusters}"
+		        	th:value="${c.name}" 
+		        	th:text="${c.name}" 
+		        >
+		        </option>
+    		</select>
+
+			<label for="person">Select the user to impersonate</label>
+			<select th:field="*{login}" >
+				<option value=""></option>
+				<option th:each="u: ${users}" th:value="${u.login}" th:text="${u.displayName}"></option>
+    		</select>
+    		
+    		
+			<label for="roles">Roles</label>
+			<select th:field="*{roles}" multiple="multiple" class="multi" >
+		       <option th:each="r: ${roles}" th:value="${r.id}" th:text="${r.name}"></option>
+    		</select>
+			<br/>
+    					
+			
+			<div class="form-actions">
+				<input type="submit" value="Impersonate" name="save"/>
+				<input type="submit" value="Cancel" name="cancel"/>
+			</div>
+			
+			</form>
+ 		
+ </div>
+ 
+ 
+ 
+ </main>
+    </body>
+</html>

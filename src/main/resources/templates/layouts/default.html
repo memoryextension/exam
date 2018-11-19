@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+ 
+ <!--/* This is the default layout */-->
+ 
+<head>
+        <link rel="stylesheet" href="/css/custom-picnic.css" th:href="@{/css/custom-picnic.css}" />
+        <link rel="stylesheet" href="/css/style.css" th:href="@{/css/style.css}" />
+</head>
+<body>
+<header th:replace="fragments/header :: header">
+    default Header
+</header>
+<main th:replace=":: content">
+    sample content
+</main>
+<footer th:replace="fragments/footer :: footer">
+    default Footer
+</footer>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org" 
+      layout:decorate="~{layouts/smarttable}">
+    <head>
+        <title>Exam questions management</title>
+    </head>
+    <body >
+    <main th:fragment="content">  
+  
+   <nav class="tabs" th:include="~{fragments/nav :: admin}" />
+  
+  <div class="info" th:if="${globalMessage}"
+			th:text="${globalMessage}">Some Success message</div>
+  
+  <div class="row">
+  	<div>
+  		<h4>Exam questions management</h4>
+  		
+  		<p>
+  		<span th:text="'Question(s) for \''+${exam.title}+'\''">Question(s) for 'exam test'</span>. 
+  		<a th:href="@{/admin/exam/{id}/question/add(id=${exam.id})}">Add question</a></p>
+  		<p><a th:href="@{/admin/exam/all}">Go back to the list of exams</a></p>
+  		
+  		<table id="question" class="smart">
+  			<thead><tr>
+     				<th>Question</th>
+         			<th>Action</th>
+     		</tr></thead>
+     		<tr th:each="q,iter : ${questions}">
+     			<td th:text="${q}">A question</td>
+				<td >
+				<!--  delete is a POST so we use a button instead -->
+				<form class="inline" name="deleteQuestionForm" th:action="@{/admin/exam/{id}/question/{qid}/delete(id=${exam.id},qid=${iter.index})}" method="post">
+				<input type="image" title="delete this question" alt="delete" th:src="@{/img/delete.svg}" width="15px"/>
+				</form>
+				</td>
+     		</tr>
+  		</table>
+ 	 </div>
+ </div>
+ 
+ 
+ </main>
+    </body>
+</html>
